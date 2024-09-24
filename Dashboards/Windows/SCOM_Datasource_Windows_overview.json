@@ -1,0 +1,649 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE",
+      "label": "opslogix-scompluginbyopslogix-datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "opslogix-scompluginbyopslogix-datasource",
+      "pluginName": "SCOM Plugin by Opslogix"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.4.2"
+    },
+    {
+      "type": "datasource",
+      "id": "opslogix-scompluginbyopslogix-datasource",
+      "name": "SCOM Plugin by Opslogix",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "links": [
+            {
+              "title": "Drilldown",
+              "url": "d/fdvebgy9ri03kb/dash-b?orgId=1&var-classInstanceId=${__data.fields[\"Object id (last)\"]}&var-name=${__data.fields[\"Object display name\"]}"
+            }
+          ],
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge",
+                  "valueDisplayMode": "text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (last)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "CPU usage %"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object display name"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Host"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object id (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "category": "performance",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "performanceGroupCounterInstanceName": "_Total",
+          "performanceGroupCounterName": "% Processor Time",
+          "performanceGroupCounterObjectName": "Processor Information",
+          "performanceObjects": [
+            {
+              "displayname": "devvm02.contoso.com",
+              "healthstate": "critical",
+              "id": "4ffc8863-3d16-a8f5-10d5-86be73828881",
+              "maintenancemode": "false",
+              "path": ""
+            }
+          ],
+          "refId": "A",
+          "toFetch": "performanceDataGroup"
+        }
+      ],
+      "title": "Top 5 CPU Consumers",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Object display name": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Object id": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "Value": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "data": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Value (last)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "limit",
+          "options": {
+            "limitField": 5
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "links": [
+            {
+              "title": "Drilldown",
+              "url": "d/fdvebgy9ri03kb/dash-b?orgId=1&var-classInstanceId=${__data.fields[\"Object id (last)\"]}&var-name=${__data.fields[\"Object display name\"]}"
+            }
+          ],
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge",
+                  "valueDisplayMode": "text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (last)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "CPU usage %"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object display name"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Host"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object id (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "category": "performance",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "performanceGroupCounterInstanceName": "",
+          "performanceGroupCounterName": "PercentMemoryUsed",
+          "performanceGroupCounterObjectName": "Memory",
+          "performanceObjects": [
+            {
+              "displayname": "Microsoft Windows Server 2022 Datacenter",
+              "healthstate": "healthy",
+              "id": "b9fa4e11-f076-8d18-3cda-7e46d2d11b2f",
+              "maintenancemode": "false",
+              "path": "devvm02.contoso.com"
+            }
+          ],
+          "refId": "A",
+          "toFetch": "performanceDataGroup"
+        }
+      ],
+      "title": "Top 5 Memory Consumers",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Object display name": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Object id": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "Value": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "data": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Value (last)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "limit",
+          "options": {
+            "limitField": 5
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "fieldMinMax": false,
+          "links": [
+            {
+              "title": "Drilldown",
+              "url": "d/fdvebgy9ri03kb/dash-b?orgId=1&var-classInstanceId=${__data.fields[\"Object id (last)\"]}&var-name=${__data.fields[\"Object display name\"]}"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Bps"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge",
+                  "valueDisplayMode": "text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (last)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "CPU usage %"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object display name"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Host"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object id (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "category": "performance",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "performanceGroupCounterInstanceName": "Microsoft Hyper-V Network Adapter",
+          "performanceGroupCounterName": "Bytes Total/sec",
+          "performanceGroupCounterObjectName": "Network Adapter",
+          "performanceObjects": [
+            {
+              "displayname": "devvm02.contoso.com",
+              "healthstate": "critical",
+              "id": "4ffc8863-3d16-a8f5-10d5-86be73828881",
+              "maintenancemode": "false",
+              "path": ""
+            }
+          ],
+          "refId": "A",
+          "toFetch": "performanceDataGroup"
+        }
+      ],
+      "title": "Top 5 Network Consumers",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Object display name": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Object id": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "Value": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "data": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Value (last)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "limit",
+          "options": {
+            "limitField": 5
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "table"
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "SCOM Windows overview",
+  "uid": "adwowausboirkd",
+  "version": 3,
+  "weekStart": ""
+}

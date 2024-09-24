@@ -1,0 +1,553 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE",
+      "label": "opslogix-scompluginbyopslogix-datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "opslogix-scompluginbyopslogix-datasource",
+      "pluginName": "SCOM Plugin by Opslogix"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.4.2"
+    },
+    {
+      "type": "datasource",
+      "id": "opslogix-scompluginbyopslogix-datasource",
+      "name": "SCOM Plugin by Opslogix",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "yellow",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "${name}",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "KBs"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "category": "performance",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "performanceClassDisplayName": "VMware ESX Server",
+          "performanceCounterInstanceName": "kiloBytesPerSecond",
+          "performanceCounterName": "Network usage",
+          "performanceCounterObjectName": "Network",
+          "performanceObjectDisplayName": "10.0.0.12 (+1)",
+          "performanceObjects": [
+            {
+              "displayname": "10.0.0.11",
+              "fullname": "OpsLogix.IMP.VMWare.ESXHost:vcenter7.vsphere.local;v7Datacenter01;10.0.0.11",
+              "id": "abc59666-fb18-5b65-be86-d6c85dbced6f",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "10.0.0.12",
+              "fullname": "OpsLogix.IMP.VMWare.ESXHost:vcenter7.vsphere.local;v7Datacenter01;10.0.0.12",
+              "id": "340beeff-0570-dfb1-ea83-9fadb84e3a07",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            }
+          ],
+          "refId": "A",
+          "toFetch": "performanceData"
+        }
+      ],
+      "title": "Network usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "${name}",
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 9,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "category": "performance",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "performanceClassDisplayName": "VMware ESX Server",
+          "performanceCounterInstanceName": "percent",
+          "performanceCounterName": "% Average CPU time",
+          "performanceCounterObjectName": "CPU",
+          "performanceObjectDisplayName": "10.0.0.12 (+1)",
+          "performanceObjects": [
+            {
+              "displayname": "10.0.0.11",
+              "fullname": "OpsLogix.IMP.VMWare.ESXHost:vcenter7.vsphere.local;v7Datacenter01;10.0.0.11",
+              "id": "abc59666-fb18-5b65-be86-d6c85dbced6f",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "10.0.0.12",
+              "fullname": "OpsLogix.IMP.VMWare.ESXHost:vcenter7.vsphere.local;v7Datacenter01;10.0.0.12",
+              "id": "340beeff-0570-dfb1-ea83-9fadb84e3a07",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            }
+          ],
+          "refId": "A",
+          "toFetch": "performanceData"
+        }
+      ],
+      "title": "CPU Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "${name}",
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "category": "performance",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "performanceClassDisplayName": "VMware ESX Server",
+          "performanceCounterInstanceName": "percent",
+          "performanceCounterName": "Average % Memory Usage",
+          "performanceCounterObjectName": "Memory",
+          "performanceObjectDisplayName": "10.0.0.12 (+1)",
+          "performanceObjects": [
+            {
+              "displayname": "10.0.0.11",
+              "fullname": "OpsLogix.IMP.VMWare.ESXHost:vcenter7.vsphere.local;v7Datacenter01;10.0.0.11",
+              "id": "abc59666-fb18-5b65-be86-d6c85dbced6f",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "10.0.0.12",
+              "fullname": "OpsLogix.IMP.VMWare.ESXHost:vcenter7.vsphere.local;v7Datacenter01;10.0.0.12",
+              "id": "340beeff-0570-dfb1-ea83-9fadb84e3a07",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            }
+          ],
+          "refId": "A",
+          "toFetch": "performanceData"
+        }
+      ],
+      "title": "Avarage Memory usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 4,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "alertsCriteria": "Severity = 2 and ResolutionState = 0",
+          "category": "alerts",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "refId": "A",
+          "toFetch": "alerts"
+        }
+      ],
+      "title": "Alerts ${name}",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "Age": 4,
+              "Ages (milli seconds)": 5,
+              "Description": 2,
+              "ID": 7,
+              "Name": 0,
+              "Object display name": 3,
+              "Repeat counts": 6,
+              "Severity": 1
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "opslogix-scompluginbyopslogix-datasource",
+          "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "classInstanceId",
+        "options": [],
+        "query": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "opslogix-scompluginbyopslogix-datasource",
+          "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "name",
+        "options": [],
+        "query": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Drill down SCOM ESX host",
+  "uid": "fdvebgy9ri03kb",
+  "version": 13,
+  "weekStart": ""
+}

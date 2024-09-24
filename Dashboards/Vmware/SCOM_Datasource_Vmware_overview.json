@@ -1,0 +1,2262 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE",
+      "label": "opslogix-scompluginbyopslogix-datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "opslogix-scompluginbyopslogix-datasource",
+      "pluginName": "SCOM Plugin by Opslogix"
+    }
+  ],
+  "__elements": {
+    "edw68vkt1pyioa": {
+      "name": "Datastore health",
+      "uid": "edw68vkt1pyioa",
+      "kind": 1,
+      "model": {
+        "datasource": {
+          "type": "opslogix-scompluginbyopslogix-datasource",
+          "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "vertical",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/^Name$/",
+            "values": true
+          },
+          "showPercentChange": false,
+          "textMode": "value",
+          "wideLayout": true
+        },
+        "pluginVersion": "10.4.2",
+        "targets": [
+          {
+            "category": "healthState",
+            "datasource": {
+              "type": "opslogix-scompluginbyopslogix-datasource",
+              "uid": "cdkowvckkc074f"
+            },
+            "healthStateClassId": "501c0501-0e59-7cc1-cc58-fa62b47c8a9c",
+            "healthStateGroupClassDisplayName": "VMware Datastore",
+            "healthStateGroupDisplayName": "All VMware Datastores",
+            "healthStateGroupId": "85348b8e-1fd8-4572-9bdc-2148095da50d",
+            "refId": "A",
+            "toFetch": "healthStateGroup"
+          }
+        ],
+        "title": "Datastores",
+        "transformations": [
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "names": [
+                  "Health state",
+                  "Name",
+                  "Path"
+                ]
+              }
+            }
+          },
+          {
+            "disabled": true,
+            "id": "partitionByValues",
+            "options": {
+              "fields": [
+                "Path"
+              ],
+              "keepFields": false
+            }
+          }
+        ],
+        "type": "stat"
+      }
+    }
+  },
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.4.2"
+    },
+    {
+      "type": "datasource",
+      "id": "opslogix-scompluginbyopslogix-datasource",
+      "name": "SCOM Plugin by Opslogix",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "piechart",
+      "name": "Pie chart",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "links": [
+            {
+              "title": "Drilldown",
+              "url": "d/fdvebgy9ri03kb/dash-b?orgId=1&var-classInstanceId=${__data.fields[\"Object id (last)\"]}&var-name=${__data.fields[\"Object display name\"]}"
+            }
+          ],
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge",
+                  "valueDisplayMode": "text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (last)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "CPU usage %"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object display name"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Host"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object id (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 11,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "category": "performance",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "performanceGroupCounterInstanceName": "percent",
+          "performanceGroupCounterName": "% Average CPU time",
+          "performanceGroupCounterObjectName": "CPU",
+          "performanceObjects": [
+            {
+              "displayname": "10.0.0.13",
+              "healthstate": "warning",
+              "id": "0eb6ce4a-dc79-e7ee-0073-0d9b3f57fc96",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "172.16.30.100",
+              "healthstate": "critical",
+              "id": "e72e78f1-87d3-c3d2-ba41-12b93ee7e21f",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "172.16.127.3",
+              "healthstate": "warning",
+              "id": "be42edf4-486e-efc1-accb-1649b8f4b05c",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "172.16.127.1",
+              "healthstate": "warning",
+              "id": "9ff235e2-66cc-d745-d96e-22a5e70b6b3f",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "5.79.73.134",
+              "healthstate": "critical",
+              "id": "aa1dba94-b636-9b76-91b7-5f35655b8b41",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "10.0.0.12",
+              "healthstate": "warning",
+              "id": "340beeff-0570-dfb1-ea83-9fadb84e3a07",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "172.16.127.2",
+              "healthstate": "warning",
+              "id": "fcee356d-0848-0d36-f3bf-ab865bc866ea",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "10.0.0.11",
+              "healthstate": "warning",
+              "id": "abc59666-fb18-5b65-be86-d6c85dbced6f",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            }
+          ],
+          "refId": "A",
+          "toFetch": "performanceDataGroup"
+        }
+      ],
+      "title": "Top 5 CPU Consumers",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Object display name": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Object id": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "Value": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "data": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Value (last)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "limit",
+          "options": {
+            "limitField": 5
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "links": [
+            {
+              "title": "Drilldown",
+              "url": "d/fdvebgy9ri03kb/dash-b?orgId=1&var-classInstanceId=${__data.fields[\"Object id (last)\"]}&var-name=${__data.fields[\"Object display name\"]}"
+            }
+          ],
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge",
+                  "valueDisplayMode": "text"
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "Memory Usage %"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object display name"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Host"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object id (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
+      "id": 12,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "category": "performance",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "performanceGroupCounterInstanceName": "percent",
+          "performanceGroupCounterName": "Average % Memory Usage",
+          "performanceGroupCounterObjectName": "Memory",
+          "performanceObjects": [
+            {
+              "displayname": "10.0.0.13",
+              "healthstate": "warning",
+              "id": "0eb6ce4a-dc79-e7ee-0073-0d9b3f57fc96",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "172.16.30.100",
+              "healthstate": "critical",
+              "id": "e72e78f1-87d3-c3d2-ba41-12b93ee7e21f",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "172.16.127.3",
+              "healthstate": "warning",
+              "id": "be42edf4-486e-efc1-accb-1649b8f4b05c",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "172.16.127.1",
+              "healthstate": "warning",
+              "id": "9ff235e2-66cc-d745-d96e-22a5e70b6b3f",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "5.79.73.134",
+              "healthstate": "critical",
+              "id": "aa1dba94-b636-9b76-91b7-5f35655b8b41",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "10.0.0.12",
+              "healthstate": "warning",
+              "id": "340beeff-0570-dfb1-ea83-9fadb84e3a07",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "172.16.127.2",
+              "healthstate": "warning",
+              "id": "fcee356d-0848-0d36-f3bf-ab865bc866ea",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "10.0.0.11",
+              "healthstate": "warning",
+              "id": "abc59666-fb18-5b65-be86-d6c85dbced6f",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            }
+          ],
+          "refId": "A",
+          "toFetch": "performanceDataGroup"
+        }
+      ],
+      "title": "Top 5 Memory Consumers",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Object display name": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Object id": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "Value": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "data": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Value (last)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "limit",
+          "options": {
+            "limitField": 5
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "links": [
+            {
+              "title": "Drilldown",
+              "url": "d/fdvebgy9ri03kb/dash-b?orgId=1&var-classInstanceId=${__data.fields[\"Object id (last)\"]}&var-name=${__data.fields[\"Object display name\"]}"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "KBs"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge",
+                  "valueDisplayMode": "text"
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "Network tx/rx"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object display name"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Host"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object id (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
+      "id": 13,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "category": "performance",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "performanceGroupCounterInstanceName": "kiloBytesPerSecond",
+          "performanceGroupCounterName": "Network usage",
+          "performanceGroupCounterObjectName": "Network",
+          "performanceObjects": [
+            {
+              "displayname": "10.0.0.13",
+              "healthstate": "warning",
+              "id": "0eb6ce4a-dc79-e7ee-0073-0d9b3f57fc96",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "172.16.30.100",
+              "healthstate": "critical",
+              "id": "e72e78f1-87d3-c3d2-ba41-12b93ee7e21f",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "172.16.127.3",
+              "healthstate": "warning",
+              "id": "be42edf4-486e-efc1-accb-1649b8f4b05c",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "172.16.127.1",
+              "healthstate": "warning",
+              "id": "9ff235e2-66cc-d745-d96e-22a5e70b6b3f",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "5.79.73.134",
+              "healthstate": "critical",
+              "id": "aa1dba94-b636-9b76-91b7-5f35655b8b41",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "10.0.0.12",
+              "healthstate": "warning",
+              "id": "340beeff-0570-dfb1-ea83-9fadb84e3a07",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "172.16.127.2",
+              "healthstate": "warning",
+              "id": "fcee356d-0848-0d36-f3bf-ab865bc866ea",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "10.0.0.11",
+              "healthstate": "warning",
+              "id": "abc59666-fb18-5b65-be86-d6c85dbced6f",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            }
+          ],
+          "refId": "A",
+          "toFetch": "performanceDataGroup"
+        }
+      ],
+      "title": "Top 5 Network activity",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Object display name": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Object id": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "Value": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "data": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Value (last)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "limit",
+          "options": {
+            "limitField": 5
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "links": [
+            {
+              "title": "Drilldown",
+              "url": "d/fdvebgy9ri03kb/dash-b?orgId=1&var-classInstanceId=${__data.fields[\"Object id (last)\"]}&var-name=${__data.fields[\"Object display name\"]}"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "KBs"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "gauge",
+                  "valueDisplayMode": "text"
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "Disk read/write"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object display name"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Host"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Object id (last)"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "id": 14,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "category": "performance",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "performanceGroupCounterInstanceName": "kiloBytesPerSecond",
+          "performanceGroupCounterName": "Disk usage",
+          "performanceGroupCounterObjectName": "Disk",
+          "performanceObjects": [
+            {
+              "displayname": "10.0.0.13",
+              "healthstate": "warning",
+              "id": "0eb6ce4a-dc79-e7ee-0073-0d9b3f57fc96",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "172.16.30.100",
+              "healthstate": "critical",
+              "id": "e72e78f1-87d3-c3d2-ba41-12b93ee7e21f",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "172.16.127.3",
+              "healthstate": "warning",
+              "id": "be42edf4-486e-efc1-accb-1649b8f4b05c",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "172.16.127.1",
+              "healthstate": "warning",
+              "id": "9ff235e2-66cc-d745-d96e-22a5e70b6b3f",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "5.79.73.134",
+              "healthstate": "critical",
+              "id": "aa1dba94-b636-9b76-91b7-5f35655b8b41",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "10.0.0.12",
+              "healthstate": "warning",
+              "id": "340beeff-0570-dfb1-ea83-9fadb84e3a07",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            },
+            {
+              "displayname": "172.16.127.2",
+              "healthstate": "warning",
+              "id": "fcee356d-0848-0d36-f3bf-ab865bc866ea",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com;DC01"
+            },
+            {
+              "displayname": "10.0.0.11",
+              "healthstate": "warning",
+              "id": "abc59666-fb18-5b65-be86-d6c85dbced6f",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local;v7Datacenter01"
+            }
+          ],
+          "refId": "A",
+          "toFetch": "performanceDataGroup"
+        }
+      ],
+      "title": "Top 5 Disk Activity",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Object display name": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Object id": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "Value": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "data": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Value (last)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "limit",
+          "options": {
+            "limitField": 5
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 200,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 101
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 8
+      },
+      "id": 18,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "category": "performance",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "performanceGroupCounterInstanceName": "Cpu (ALL)",
+          "performanceGroupCounterName": "Commitment",
+          "performanceGroupCounterObjectName": "ClusterComputeResource",
+          "performanceObjects": [
+            {
+              "displayname": "v7Datacenter01",
+              "healthstate": "critical",
+              "id": "c79b68f0-a4db-bad3-c168-5339ef13c190",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local"
+            },
+            {
+              "displayname": "DC01",
+              "healthstate": "critical",
+              "id": "8a7d9de2-5a43-1a0c-2b01-8b96d0b4a6df",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com"
+            }
+          ],
+          "refId": "A",
+          "toFetch": "performanceDataGroup"
+        }
+      ],
+      "title": "CPU Commitment %",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Object display name": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Time": {
+                "aggregations": []
+              },
+              "Value": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "data": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 200,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 101
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 5,
+        "y": 8
+      },
+      "id": 19,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "category": "performance",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "performanceGroupCounterInstanceName": "Memory (ALL)",
+          "performanceGroupCounterName": "Commitment",
+          "performanceGroupCounterObjectName": "ClusterComputeResource",
+          "performanceObjects": [
+            {
+              "displayname": "v7Datacenter01",
+              "healthstate": "critical",
+              "id": "c79b68f0-a4db-bad3-c168-5339ef13c190",
+              "maintenancemode": "false",
+              "path": "vcenter7.vsphere.local"
+            },
+            {
+              "displayname": "DC01",
+              "healthstate": "critical",
+              "id": "8a7d9de2-5a43-1a0c-2b01-8b96d0b4a6df",
+              "maintenancemode": "false",
+              "path": "vcenter8.contoso.com"
+            }
+          ],
+          "refId": "A",
+          "toFetch": "performanceDataGroup"
+        }
+      ],
+      "title": "Memory Commitment %",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Object display name": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Value": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "critical": {
+                  "color": "red",
+                  "index": 0
+                },
+                "warning": {
+                  "color": "yellow",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "pattern": "!(critical|warning)",
+                "result": {
+                  "color": "green",
+                  "index": 2
+                }
+              },
+              "type": "regex"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 7,
+        "x": 0,
+        "y": 12
+      },
+      "id": 17,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Health state$/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "category": "healthState",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "healthStateClassDisplayName": "VMware Cluster",
+          "healthStateClassId": "ce813fae-c5a5-5735-0b2e-8a13bac35e89",
+          "healthStateGroupClassDisplayName": "VMware Cluster",
+          "healthStateGroupDisplayName": "All VMware Datacenters",
+          "healthStateGroupId": "84fdcf66-751e-0656-2c31-5520c53c8944",
+          "refId": "A",
+          "toFetch": "healthStateGroup"
+        }
+      ],
+      "title": "Datacenter health state",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Id": true,
+              "Maintenance mode": true,
+              "Name": false,
+              "Path": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "pattern": "warning",
+                "result": {
+                  "color": "yellow",
+                  "index": 0
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "critical",
+                "result": {
+                  "color": "red",
+                  "index": 1
+                }
+              },
+              "type": "regex"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "string"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Health state"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "critical": {
+                        "color": "red",
+                        "index": 1
+                      },
+                      "success": {
+                        "color": "green",
+                        "index": 2,
+                        "text": "ok"
+                      },
+                      "warning": {
+                        "color": "yellow",
+                        "index": 0
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Id"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Name"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "Drilldown",
+                    "url": "d/fdvebgy9ri03kb/dash-b?orgId=1&var-classInstanceId=${__data.fields.Id}&var-name=${__data.fields.Name}"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 12
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "category": "healthState",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "healthStateClassId": "a0a5fa1a-4c9a-33d6-1ba4-fc815306157b",
+          "healthStateGroupClassDisplayName": "VMware ESX Server",
+          "healthStateGroupDisplayName": "All VMware ESX Servers",
+          "healthStateGroupId": "2558ee8b-a343-ff25-e8e0-0ff8694965ea",
+          "refId": "A",
+          "toFetch": "healthStateGroup"
+        }
+      ],
+      "title": "ESX hosts health states",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "field": "Health state"
+              }
+            ]
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Id": false
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Health state": 0,
+              "Id": 4,
+              "Maintenance mode": 3,
+              "Name": 1,
+              "Path": 2
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "critical": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Critical"
+                },
+                "warning": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "Warning"
+                }
+              },
+              "type": "value"
+            }
+          ]
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Count (count)"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Warning"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 0,
+        "y": 16
+      },
+      "id": 4,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true,
+          "values": [
+            "value"
+          ]
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Count \\(count\\)$/",
+          "values": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "category": "healthState",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "healthStateClassId": "a0a5fa1a-4c9a-33d6-1ba4-fc815306157b",
+          "healthStateGroupClassDisplayName": "VMware ESX Server",
+          "healthStateGroupDisplayName": "All VMware ESX Servers",
+          "healthStateGroupId": "2558ee8b-a343-ff25-e8e0-0ff8694965ea",
+          "refId": "A",
+          "toFetch": "healthStateGroup"
+        }
+      ],
+      "title": "ESX Hosts Health states",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "Health state"
+              ],
+              "reducer": "count"
+            }
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Count": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "aggregate"
+              },
+              "Health state": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Id": {
+                "aggregations": []
+              },
+              "Name": {
+                "aggregations": [
+                  "count"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "gridPos": {
+        "h": 4,
+        "w": 7,
+        "x": 0,
+        "y": 24
+      },
+      "id": 10,
+      "libraryPanel": {
+        "uid": "edw68vkt1pyioa",
+        "name": "Datastore health"
+      }
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "pattern": "warning",
+                "result": {
+                  "color": "yellow",
+                  "index": 0
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "critical",
+                "result": {
+                  "color": "red",
+                  "index": 1
+                }
+              },
+              "type": "regex"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "string"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Health state"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "critical": {
+                        "color": "red",
+                        "index": 1
+                      },
+                      "success": {
+                        "color": "green",
+                        "index": 2,
+                        "text": "ok"
+                      },
+                      "warning": {
+                        "color": "yellow",
+                        "index": 0
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Id"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Name"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "Drilldown",
+                    "url": "d/fdvebgy9ri03kx/drill-down-scom-vm?orgId=1&var-classInstanceId=${__data.fields.Id}&var-name=${__data.fields.Name}"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 17,
+        "x": 7,
+        "y": 24
+      },
+      "id": 16,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "category": "healthState",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "healthStateClassId": "2890441c-f964-2554-6d11-58ef783c7a89",
+          "healthStateGroupClassDisplayName": "VMware Virtual Machine",
+          "healthStateGroupDisplayName": "All VMware Virtual Machines",
+          "healthStateGroupId": "0cfaab78-86a9-8597-910e-d940aa54c347",
+          "refId": "A",
+          "toFetch": "healthStateGroup"
+        }
+      ],
+      "title": "VM Health states",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "field": "Health state"
+              }
+            ]
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Id": false
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Health state": 0,
+              "Id": 4,
+              "Maintenance mode": 3,
+              "Name": 1,
+              "Path": 2
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "opslogix-scompluginbyopslogix-datasource",
+        "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "critical": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Critical"
+                },
+                "warning": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "Warning"
+                }
+              },
+              "type": "value"
+            }
+          ]
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Count (count)"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Warning"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 0,
+        "y": 28
+      },
+      "id": 15,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true,
+          "values": [
+            "value"
+          ]
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Count \\(count\\)$/",
+          "values": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "category": "healthState",
+          "datasource": {
+            "type": "opslogix-scompluginbyopslogix-datasource",
+            "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+          },
+          "healthStateClassId": "2890441c-f964-2554-6d11-58ef783c7a89",
+          "healthStateGroupClassDisplayName": "VMware Virtual Machine",
+          "healthStateGroupDisplayName": "All VMware Virtual Machines",
+          "healthStateGroupId": "0cfaab78-86a9-8597-910e-d940aa54c347",
+          "refId": "A",
+          "toFetch": "healthStateGroup"
+        }
+      ],
+      "title": "VM Health states",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "Health state"
+              ],
+              "reducer": "count"
+            }
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Count": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "aggregate"
+              },
+              "Health state": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Id": {
+                "aggregations": []
+              },
+              "Name": {
+                "aggregations": [
+                  "count"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "type": "piechart"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "opslogix-scompluginbyopslogix-datasource",
+          "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "classInstanceId",
+        "options": [],
+        "query": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "opslogix-scompluginbyopslogix-datasource",
+          "uid": "${DS_OPSLOGIX-SCOMPLUGINBYOPSLOGIX-DATASOURCE}"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "name",
+        "options": [],
+        "query": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "SCOM Vmware overview",
+  "uid": "fdvebedsgu0w0a",
+  "version": 51,
+  "weekStart": ""
+}
